@@ -1,33 +1,60 @@
 version: '3'
 
+networks:
+  my_network:
+    name: my_network
+    driver: bridge
+
+volumes:
+  WP:
+    driver: local
+    name: WP
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/swautele/data/wordpress
+  DB:
+    driver: local
+    name: DB
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/swautele/data/mariadb
+
 services:
   NGINX:
-    image: NGINX
+    conatiner_name: NGINX
     restart: on-failure
+    build: ./nginx
+    env_file: ./.env
+    ports: "443:443"
     volumes:
       - type: bind
-        source: /home/swautele/data
+        source: /home/swautele/data/wordpress
         target: /container/path/to/data
-    networks:
-      -my_network
+    networks: my_network
   MariaDB:
     image: MariaDB
     restart: on-failure
+    build: ./mariadb
+    ports: "3306:3306"
+    env_file: ./.env
     volumes:
       - type: bind
-        source: /home/swautele/data
+        source: /home/swautele/data/mariadb
         target: /container/path/to/data
-    networks:
-      -my_network
+    networks: my_network
   WordPress:
     image: WordPress
     restart: on-failure
+    build: wordpress
+    ports: "9000:9000"
+    env_file: ./.env
+    depends_on: mariadb
     volumes:
       - type: bind
-        source: /home/swautele/data
+        source: /home/swautele/data/wordpress
         target: /container/path/to/data
-    networks:
-      -my_network
+    networks: -my_network
+     
 
-networks:
-  my_network:
