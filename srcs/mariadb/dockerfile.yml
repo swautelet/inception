@@ -3,11 +3,10 @@ FROM debian:10.7
 
 # Install the required packages for MariaDB
 RUN apt-get update && apt-get install -y \
-    mariadb-server \
-    && rm -rf /var/lib/apt/lists/*
+    mariadb-server 
 
 # Copy the configuration file for MariaDB
-COPY my.cnf /etc/mysql/my.cnf
+COPY conf.cnf /etc/mysql/conf.cnf
 
 # Set the permissions for the configuration file
 RUN chmod 644 /etc/mysql/my.cnf
@@ -16,4 +15,7 @@ RUN chmod 644 /etc/mysql/my.cnf
 EXPOSE 3306
 
 # Start the MariaDB service
-CMD ["mysqld"]
+RUN service mysql start && \
+    mysql < /var/www/base.sql && \
+    rm -f /var/www/base.sql
+CMD ["mysqld", "--bind-address=0.0.0.0"]

@@ -7,8 +7,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     libzip-dev \
     unzip \
-    libpng-dev \
-    && rm -rf /var/lib/apt/lists/*
+    libpng-dev 
 
 # Install the PHP extensions required by WordPress
 RUN docker-php-ext-install mysqli pdo pdo_mysql zip gd
@@ -21,6 +20,8 @@ RUN curl -O https://wordpress.org/latest.zip \
 
 # Set the working directory to the root of the WordPress installation
 WORKDIR /var/www/html/wordpress
+
+EXPOSE 9000
 
 # Set the permissions for the WordPress files
 RUN chown -R www-data:www-data /var/www/html/wordpress
