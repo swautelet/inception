@@ -1,0 +1,25 @@
+# Use the penultimate stable version of Debian as the base
+FROM debian:10.7
+
+# Set the environment variables for the MariaDB installation
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=wordpress
+ENV MYSQL_USER=wordpress
+ENV MYSQL_PASSWORD=wordpress
+
+# Install the required packages for MariaDB
+RUN apt-get update && apt-get install -y \
+    mariadb-server \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the configuration file for MariaDB
+COPY my.cnf /etc/mysql/my.cnf
+
+# Set the permissions for the configuration file
+RUN chmod 644 /etc/mysql/my.cnf
+
+# Expose the default MariaDB port
+EXPOSE 3306
+
+# Start the MariaDB service
+CMD ["mysqld"]
