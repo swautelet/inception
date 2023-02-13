@@ -4,7 +4,7 @@ all:
 	@echo "Starting all containers..."
 	@mkdir -p /home/swautele/data/wordpress
 	@mkdir -p /home/swautele/data/mariadb
-	@sudo docker-compose -f $(COMPOSE) up -d --build
+	@sudo docker compose -f $(COMPOSE) up -d --build
 	@echo "All containers started successfully!"
 
 down:
