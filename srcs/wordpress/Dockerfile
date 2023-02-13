@@ -29,12 +29,12 @@ RUN curl -O https://wordpress.org/latest.zip \
     && mv wordpress /var/www/html
 
 # Set the working directory to the root of the WordPress installation
-WORKDIR /var/www/html/wordpress
+WORKDIR /var/www/html/
 
 EXPOSE 9000
 
 # Set the permissions for the WordPress files
-RUN chown -R www-data:www-data /var/www/html/wordpress
+RUN chown -R www-data:www-data /var/www/html/
 
 # Entrypoint configuration
 COPY ./wp.sh /usr/local/bin/wp_script.sh
