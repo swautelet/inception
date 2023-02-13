@@ -37,7 +37,7 @@ EXPOSE 9000
 RUN chown -R www-data:www-data /var/www/html/wordpress
 
 # Entrypoint configuration
-COPY ./wp.sh /usr/local/bin/
+COPY ./wp.sh /usr/local/bin/wp_script.sh
 RUN chmod +x /usr/local/bin/wp_script.sh
 ENTRYPOINT ["/usr/local/bin/wp_script.sh"]
 

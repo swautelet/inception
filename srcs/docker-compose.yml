@@ -31,15 +31,13 @@ services:
     ports: 
       - "443:443"
     volumes:
-      - type: bind
-        source: /home/swautele/data/wordpress
-        target: /container/path/to/data
+      - WP:/var/www/html/
     networks:
       - my_network
     depends_on: 
       - wordpress
   mariadb:
-    image: mariadb
+    container_name: mariadb
     restart: on-failure
     build: ./mariadb
     ports: 
@@ -47,13 +45,11 @@ services:
     env_file: 
       - ./.env
     volumes:
-      - type: bind
-        source: /home/swautele/data/mariadb
-        target: /container/path/to/data
+      - DB:/var/lib/mysql/
     networks:
       - my_network
   wordpress:
-    image: wordpress
+    container_name: wordpress
     restart: on-failure
     build: ./wordpress
     ports: 
@@ -63,9 +59,7 @@ services:
     depends_on: 
       - mariadb
     volumes:
-      - type: bind
-        source: /home/swautele/data/wordpress
-        target: /container/path/to/data
+      -  WP:/var/www/html/
     networks: 
       - my_network
      
