@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
+if [ -f "/var/www/html/wordpress/wp-config.php" ]; then
     # echo "Downloading Wordpress"
     # mkdir -p /var/www/html/
     # wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
@@ -18,7 +18,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
     wp user create "$WP_ADMIN_LOGIN" "$WP_ADMIN_EMAIL" --user_pass="$WP_ADMIN_PASSWORD" --role=administrator --allow-root
     wp theme install inspiro --activate --allow-root
 else
-    echo "Already Downloaded"
+    echo "Download failed"
 fi
 
 exec "$@"
