@@ -15,7 +15,7 @@ RUN chmod 644 /etc/mysql/my.cnf
 EXPOSE 3306
 
 # Start the MariaDB service
-RUN service mysql start && \
-    mysql < /var/www/base.sql && \
-    rm -f /var/www/base.sql
+RUN service mysql start
+RUN mysql < /var/www/base.sql
+RUN rm -f /var/www/base.sql
 CMD ["mysqld", "--bind-address=0.0.0.0"]
