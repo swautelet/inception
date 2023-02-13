@@ -7,15 +7,16 @@ RUN apt-get update && apt-get install -y \
 
 # Copy the configuration file for MariaDB
 COPY conf.cnf /etc/mysql/conf.cnf
+COPY base.sql /var/www/base.sql
 
 # Set the permissions for the configuration file
-RUN chmod 644 /etc/mysql/my.cnf
+RUN chmod 644 /etc/mysql/conf.cnf
 
 # Expose the default MariaDB port
 EXPOSE 3306
 
 # Start the MariaDB service
-RUN service mysql start
-RUN mysql < /var/www/base.sql
-RUN rm -f /var/www/base.sql
+RUN service mysql start && \
+     mysql < /var/www/base.sql && \
+     rm -f /var/www/base.sql
 CMD ["mysqld", "--bind-address=0.0.0.0"]
