@@ -10,7 +10,11 @@ RUN apt-get update && apt-get install -y \
     libpng-dev 
 
 # Install the PHP extensions required by WordPress
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip gd
+# RUN docker-php-ext-install mysqli pdo pdo_mysql zip gd
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions gd xdebug
 
 # Download and extract the latest version of WordPress
 RUN curl -O https://wordpress.org/latest.zip \
