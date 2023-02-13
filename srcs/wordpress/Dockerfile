@@ -35,7 +35,7 @@ WORKDIR /var/www/html/wordpress
 EXPOSE 9000
 
 # Set the permissions for the WordPress files
-RUN chown -R swautele:swautele /var/www/html/wordpress
+# RUN chown -R swautele:swautele /var/www/html/wordpress
 
 # Entrypoint configuration
 COPY ./wp.sh /usr/local/bin/wp_script.sh
