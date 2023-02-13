@@ -9,7 +9,7 @@ all:
 
 down:
 	@echo "Stopping all containers..."
-	@sudo docker-compose -f $(COMPOSE) down
+	@sudo docker compose -f $(COMPOSE) down
 	@echo "All containers stopped successfully!"
 
 re: down clean all
