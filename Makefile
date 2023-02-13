@@ -2,8 +2,8 @@ COMPOSE = ./srcs/docker-compose.yml
 
 all:
 	@echo "Starting all containers..."
-	@mkdir -p /home/mthiry/data/wordpress
-	@mkdir -p /home/mthiry/data/mariadb
+	@mkdir -p /home/swautele/data/wordpress
+	@mkdir -p /home/swautele/data/mariadb
 	@sudo docker-compose -f $(COMPOSE) up -d --build
 	@echo "All containers started successfully!"
 
