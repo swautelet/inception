@@ -23,18 +23,19 @@ RUN apt-get update && apt-get install -y \
 # RUN install-php-extensions gd xdebug
 
 # Download and extract the latest version of WordPress
+RUN mkdir -p /var/www/html
 RUN curl -O https://wordpress.org/latest.zip \
     && unzip latest.zip \
     && rm latest.zip \
     && mv wordpress /var/www/html
 
 # Set the working directory to the root of the WordPress installation
-WORKDIR /var/www/html/
+WORKDIR /var/www/html/wordpress
 
 EXPOSE 9000
 
 # Set the permissions for the WordPress files
-RUN chown -R www-data:www-data /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/wordpress
 
 # Entrypoint configuration
 COPY ./wp.sh /usr/local/bin/wp_script.sh
