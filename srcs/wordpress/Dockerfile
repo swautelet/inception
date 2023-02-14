@@ -23,11 +23,11 @@ RUN apt-get update && apt-get install -y \
 # RUN install-php-extensions gd xdebug
 
 # Download and extract the latest version of WordPress
-RUN mkdir -p /var/www/html
-RUN curl -O https://wordpress.org/latest.zip \
-    && unzip latest.zip \
-    && rm latest.zip \
-    && mv wordpress /var/www/html
+# RUN mkdir -p /var/www/html
+# RUN curl -O https://wordpress.org/latest.zip \
+#     && unzip latest.zip \
+#     && rm latest.zip \
+#     && mv wordpress /var/www/html
 
 # Set the working directory to the root of the WordPress installation
 WORKDIR /var/www/html/wordpress
