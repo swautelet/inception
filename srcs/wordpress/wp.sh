@@ -7,7 +7,7 @@ if [ -f "/var/www/html/wordpress/wp-config.php" ]; then
     tar xzf /tmp/wordpress.tar.gz -C /var/www/html/
     cp -R /var/www/html/wordpress/* /var/www/html
     rm -rf /tmp/wordpress.tar.gz
-    rm -rf /var/www/html/wordpress
+    # rm -rf /var/www/html/wordpress
 
     sed -i "s/username_here/$DB_LOGIN/g" wp-config-sample.php
     sed -i "s/password_here/$DB_PASSWORD/g" wp-config-sample.php
