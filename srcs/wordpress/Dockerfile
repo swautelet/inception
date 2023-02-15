@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
 #     && rm latest.zip \
 #     && mv wordpress /var/www/html
 
+COPY www.conf /run/php/php7.3-fpm.sock
 # Set the working directory to the root of the WordPress installation
 WORKDIR /var/www/html/wordpress
 
