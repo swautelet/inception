@@ -44,4 +44,4 @@ RUN chmod +x /usr/local/bin/wp_script.sh
 ENTRYPOINT ["/usr/local/bin/wp_script.sh"]
 
 # Start the PHP-FPM service
-CMD ["php-fpm"]
+CMD ["php-fpm7.3"]
