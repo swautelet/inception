@@ -21,4 +21,5 @@ else
     echo "Download failed"
 fi
 
+whereis php-fpm
 exec "$@"
