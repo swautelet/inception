@@ -34,7 +34,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN mkdir /run/php
 COPY www.conf /run/php/php7.3-fpm.sock
 # Set the working directory to the root of the WordPress installation
-WORKDIR /var/www/html/wordpress
+WORKDIR /var/www/html/
 
 EXPOSE 9000
 
