@@ -24,10 +24,13 @@ RUN apt-get update && apt-get install -y \
 
 # Download and extract the latest version of WordPress
 RUN mkdir -p /var/www/html
-RUN curl -O https://wordpress.org/latest.zip \
-    && unzip latest.zip \
-    && rm latest.zip \
-    && mv wordpress /var/www/html
+# RUN curl -O https://wordpress.org/latest.zip \
+#     && unzip latest.zip \
+#     && rm latest.zip \
+#     && mv wordpress /var/www/html
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir /run/php
 COPY www.conf /run/php/php7.3-fpm.sock
 # Set the working directory to the root of the WordPress installation
