@@ -10,11 +10,12 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
     rm -rf /var/www/html/wordpress
 
     wp core download --allow-root
-    sed -i "s/username_here/$DB_LOGIN/g" wp-config-sample.php
-    sed -i "s/password_here/$DB_PASSWORD/g" wp-config-sample.php
-    sed -i "s/localhost/$DB_HOSTNAME/g" wp-config-sample.php
-    sed -i "s/database_name_here/$DB_NAME/g" wp-config-sample.php
-    cp wp-config-sample.php wp-config.php
+    # sed -i "s/username_here/$DB_LOGIN/g" wp-config-sample.php
+    # sed -i "s/password_here/$DB_PASSWORD/g" wp-config-sample.php
+    # sed -i "s/localhost/$DB_HOSTNAME/g" wp-config-sample.php
+    # sed -i "s/database_name_here/$DB_NAME/g" wp-config-sample.php
+    # cp wp-config-sample.php wp-config.php
+    wp config create --dbname=$DB_NAME --dbuser=$DB_LOGIN --dbpass=$DB_PASSWORD --dbhost=$DB_HOSTNAME
     wp core install --url=$WP_URL --title=$WP_TITLE --admin_user=supervisor --admin_password=123456789 --admin_email=info@example.com --allow-root
     wp user create "$WP_ADMIN_LOGIN" "$WP_ADMIN_EMAIL" --user_pass="$WP_ADMIN_PASSWORD" --role=administrator --allow-root
     wp theme install inspiro --activate --allow-root
