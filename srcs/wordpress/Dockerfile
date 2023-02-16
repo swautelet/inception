@@ -23,18 +23,19 @@ RUN apt-get update && apt-get install -y \
 # RUN install-php-extensions gd xdebug
 
 # Download and extract the latest version of WordPress
-# RUN mkdir -p /var/www/html
-RUN curl -O https://wordpress.org/latest.zip \
-    && unzip latest.zip \
-    && rm latest.zip \
-    && mv wordpress /var/www/html
-
+RUN mkdir -p /var/www/html
+# RUN curl -O https://wordpress.org/latest.zip \
+#     && unzip latest.zip \
+#     && rm latest.zip \
+#     && mv wordpress /var/www/html
+RUN mkdir /run/php
+COPY www.conf /run/php/php7.3-fpm.sock
 # Set the working directory to the root of the WordPress installation
 WORKDIR /var/www/html/wordpress
 
 EXPOSE 9000
 
-RUN export PATH=$PATH:/usr/sbin/
+# RUN export PATH=$PATH:/usr/sbin/
 # Set the permissions for the WordPress files
 # RUN chown -R swautele:swautele /var/www/html/wordpress
 
@@ -44,4 +45,4 @@ RUN chmod +x /usr/local/bin/wp_script.sh
 ENTRYPOINT ["/usr/local/bin/wp_script.sh"]
 
 # Start the PHP-FPM service
-CMD ["php-fpm"]
+CMD ["php-fpm7.3", "-F"]
