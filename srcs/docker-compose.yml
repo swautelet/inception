@@ -26,8 +26,6 @@ services:
     container_name: nginx
     restart: on-failure
     build: ./nginx
-    env_file: 
-      - ./.env
     ports: 
       - "443:443"
     volumes:
