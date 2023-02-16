@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -f "/var/www/html/wordpress/wp-config.php" ]; then
+if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
     echo "Downloading Wordpress"
     mkdir -p /var/www/html/
     wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
