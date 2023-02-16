@@ -16,7 +16,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
     # sed -i "s/database_name_here/$DB_NAME/g" wp-config-sample.php
     # cp wp-config-sample.php wp-config.php
     echo between download and config create 
-    wp config create --dbname=$DB_NAME --dbuser=$DB_LOGIN --dbpass=$DB_PASSWORD --dbhost=$DB_HOSTNAME 
+    wp config create --dbname=$DB_NAME --dbuser=$DB_LOGIN --dbpass=$DB_PASSWORD --dbhost=$DB_HOSTNAME --allow-root
     echo between config create and install
     wp core install --url=$WP_URL --title=$WP_TITLE --admin_user=supervisor --admin_password=123456789 --admin_email=info@example.com --allow-root
     echo between install and user create
