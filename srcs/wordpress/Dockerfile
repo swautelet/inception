@@ -38,7 +38,7 @@ WORKDIR /var/www/html/
 
 EXPOSE 9000
 
-RUN export PATH=$PATH:/usr/local/mysql/bin
+RUN export PATH="$PATH:/usr/local/mysql/bin"
 # Set the permissions for the WordPress files
 # RUN chown -R swautele:swautele /var/www/html/wordpress
 
