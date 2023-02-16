@@ -9,6 +9,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
     rm -rf /tmp/wordpress.tar.gz
     rm -rf /var/www/html/wordpress
 
+    wp core download
     sed -i "s/username_here/$DB_LOGIN/g" wp-config-sample.php
     sed -i "s/password_here/$DB_PASSWORD/g" wp-config-sample.php
     sed -i "s/localhost/$DB_HOSTNAME/g" wp-config-sample.php
