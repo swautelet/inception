@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS wordpress;
+CREATE USER IF NOT EXISTS 'swautele'@'%' IDENTIFIED BY '123456789';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'swautele'@'%';
+
+-- Creating root user
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root123456789';
+FLUSH PRIVILEGES;
